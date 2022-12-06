@@ -4,23 +4,20 @@
 #  Author: Ammar Ajmal
 #  Date: 2022-12-05
 #  Description: This script is used to calibrate the webcam and save the calibration parameters.
-#  The calibration parameters are used to undistort the images captured from the webcam.
-#  The calibration parameters are saved in a file called "calib_params.npz".
-#  The calibration parameters are used in the script "webcam.py".
-#  The calibration parameters are used in the script "webcam_undistort.py".
-#  The calibration parameters are used in the script "webcam_undistort_save.py".
-#
+
+#  The calibration parameters are saved in the file "camera_calib.npy".
 
 import numpy as np
 import cv2
 import numpy as np
 import time
-import glob
-ret, mtx, dist, rvecs, tvecs = [], [], [], [], []
-# "cam_calibraiton"  -  function to calibrate the webcam and save the calibration parameters
+import os,glob
+
+
 
 def cam_calibraiton():
-    ret, mtx, dist, rvecs, tvecs = [], [], [], [], []
+    # "cam_calibraiton"  -  function to calibrate the webcam and save the calibration parameters
+
     frame_per_second = 30
     cv2.namedWindow("Camera Calibration")
     cv2.moveWindow("Camera Calibration", 800, 0)
@@ -32,7 +29,6 @@ def cam_calibraiton():
 
     prev_frame_time = time.time()
     cal_image_count = 0
-    frame_count = 0
     copyFrame = None
     print('Press "Space" to save an image, "Enter" to start camera calibration, and  "Esc" or "q" to quit')
 
@@ -55,19 +51,12 @@ def cam_calibraiton():
 
         if inputKey == ord(' '):
             print('-- Space pressed... saving image #'+str(cal_image_count)+'.jpg')
-            cv2.imwrite("cal_image_"+str(cal_image_count)+".jpg", copyFrame)
+            path = os.getcwd()+"/images/"
+            cv2.imwrite(path+"cal_image_"+str(cal_image_count)+".jpg", copyFrame)
             cal_image_count += 1
-            new_frame_time = time.time()
-            fps = 1/(new_frame_time - prev_frame_time)
-            prev_frame_time = new_frame_time
-            cv2.putText(frame,
-                        "FPS:" + str(int(fps)),
-                        (10, 40),
-                        cv2.FONT_HERSHEY_PLAIN,
-                        2,
-                        (100, 255, 0),
-                        2,
-                        cv2.LINE_AA)
+
+            
+
             
         elif inputKey == 13:
             print('-- Enter pressed... Starting Camera Calibaration')
@@ -85,9 +74,10 @@ def cam_calibraiton():
             # Arrays to store object points and image points from all the images
             list_cb_3d_points = []  # 3d points in real world
             list_cb_2d_img_points = []  # 2d points in image plane
-
-            list_images = glob.glob('*.jpg')
-            for frame_name in list_images:
+            
+            # os.getcwd()
+            path = os.getcwd()+"/images/"
+            for frame_name in glob.glob(os.path.join(path, '*.jpg')):
                 img = cv2.imread(frame_name)
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                 # Find the chessboard corners
@@ -100,9 +90,10 @@ def cam_calibraiton():
                     # Draw adn display the corners
                     shape_image = gray.shape[::-1]
                     cv2.drawChessboardCorners(img, (cb_width, cb_height), corners2, ret)
-                    cv2.imshow('img', img)
-                    cv2.waitKey(500)
+                    cv2.imshow('Camera Calibration', img)
+                    cv2.waitKey(200)
             cv2.destroyAllWindows()
+            print('Calibrating Camera... Please wait...')
 
             ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(list_cb_3d_points, list_cb_2d_img_points, (640, 480), None, None)
             
@@ -110,39 +101,19 @@ def cam_calibraiton():
             with open('camera_calib.npy', 'wb') as f:
                 np.save(f, mtx)
                 np.save(f, dist)
+
             print('Camera Calibration Parameters Saved!\n')
             print('Calibration Matrix: ')
             print(mtx)
             print('Distortion: ')
             print(dist)
-            print(' Task Completed!')
-            
-
-        
-        # elif inputKey == ord('u'):
-        #     print('-- U pressed... Undistorting image...')
-        #     img = cv2.imread('cal_image_0.jpg')
-        #     h, w = img.shape[:2]
-        #     newCameraMatrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w, h), 1, (w, h))
-            
-        #     # undistort
-        #     dst = cv2.undistort(img, mtx, dist, None, newCameraMatrix)
-        #     # crop the image 
-        #     x, y , w, h = roi
-        #     dst = dst[y:y+h, x:x+w]
-        #     cv2.imwrite('cal_image_0_undistort.png', dst)
-            
-            
+            print(' Camera Calibration Completed, file saved as "camera_calib.npy"!')
+            break
 
         elif inputKey == ord('q') or inputKey == 27:
             print('-- Quitting...')
             break
     video_capture.release()
     cv2.destroyAllWindows()
-
-
-
-
-
 if __name__ == '__main__':
     cam_calibraiton()
