@@ -1,0 +1,3 @@
+/home/ammar/sitl/AGCAM/build/CMakeFiles/rebuild_cache.dir
+/home/ammar/sitl/AGCAM/build/CMakeFiles/edit_cache.dir
+/home/ammar/sitl/AGCAM/build/CMakeFiles/demo_aruco.dir
