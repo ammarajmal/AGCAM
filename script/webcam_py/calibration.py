@@ -3,10 +3,10 @@ Sample Usage:-
 python3 calibration.py --dir calibration_checkerboard/ --square_size 0.024
 '''
 
-import numpy as np
-import cv2
 import os
 import argparse
+import cv2
+import numpy as np
 
 
 def calibrate(dirpath, square_size, width, height, visualize=False):

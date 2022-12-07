@@ -18,7 +18,7 @@ video = cv2.VideoCapture(2)
 # We need to check if camera
 # is opened previously or not
 if (video.isOpened() == False):
-	print("Error reading video file")
+	print("Error reading video source")
 
 # We need to set resolutions.
 # so, convert them from float to integer.

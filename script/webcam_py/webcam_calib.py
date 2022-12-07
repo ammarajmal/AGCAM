@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Path: webcam_calib.py
 #  Author: Ammar Ajmal
@@ -6,12 +6,11 @@
 #  Description: This script is used to calibrate the webcam and save the calibration parameters.
 
 #  The calibration parameters are saved in the file "camera_calib.npy".
-
-import numpy as np
+import time
+import glob
+import os
 import cv2
 import numpy as np
-import time
-import os,glob
 
 
 
