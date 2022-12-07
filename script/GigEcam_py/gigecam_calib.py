@@ -10,6 +10,7 @@
     Sample Usage:-
     
     python3 gigecam_calib.py --dir calibration_checkerboard/ --square_size 0.024
+    python3 gigecam_calib.py --dir calibration_checkerboard/ --square_size 0.024 --visualize True
 """
 
 import time
@@ -190,9 +191,17 @@ if __name__ == '__main__':
     # print("ret: ", ret)
     print("mtx: ", mtx)
     print("dist: ", dist)
-    # print("rvecs: ", rvecs)
-    # print("tvecs: ", tvecs)
+    
+    with open('GigEcameraParameters.txt', 'w') as f:
+        f.write(mtx)
+        f.write('\n')
+        f.write(dist)
+        
+    print("rvecs: ", rvecs)
+    print("tvecs: ", tvecs)
 
     # np.save("gigecam_calib.npy", [ret, mtx, dist, rvecs, tvecs])
     np.save("calibration_matrix", mtx)
     np.save("distortion_coefficients", dist)
+
+    

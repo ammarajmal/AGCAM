@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     # Manual exposure, exposure time 30ms
     mvsdk.CameraSetAeState(hCamera, 0)
-    mvsdk.CameraSetExposureTime(hCamera, 8 * 1000)
+    mvsdk.CameraSetExposureTime(hCamera, 4 * 1000)
 
     # Let the SDK internal image fetching thread start to work
     mvsdk.CameraPlay(hCamera)

@@ -20,7 +20,7 @@ def cam_calibraiton():
     frame_per_second = 30
     cv2.namedWindow("Camera Calibration")
     cv2.moveWindow("Camera Calibration", 800, 0)
-    video_capture = cv2.VideoCapture(2)
+    video_capture = cv2.VideoCapture(0)
 
     video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -75,7 +75,7 @@ def cam_calibraiton():
             list_cb_2d_img_points = []  # 2d points in image plane
             
             # os.getcwd()
-            path = os.getcwd()+"/images/"
+            path = os.getcwd()+"/calibration_checkerboard/"
             for frame_name in glob.glob(os.path.join(path, '*.jpg')):
                 img = cv2.imread(frame_name)
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
