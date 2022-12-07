@@ -69,9 +69,9 @@ if __name__ == '__main__':
     k = np.load(calibration_matrix_path)
     d = np.load(distortion_coefficients_path)
 
-    video = cv2.VideoCapture(2)
+    video = cv2.VideoCapture(0)
     time.sleep(2.0)
-
+    pTime = time.time()
     while True:
         ret, frame = video.read()
 
@@ -80,8 +80,13 @@ if __name__ == '__main__':
         
         output = pose_esitmation(frame, aruco_dict_type, k, d)
 
+        cTime = time.time()
+        fps = 1/(cTime-pTime)
+        pTime = cTime
+        
+        cv2.putText(output, f'FPS: {int(fps)}', (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 3)
         cv2.imshow('Estimated Pose', output)
-
+        
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
             break
