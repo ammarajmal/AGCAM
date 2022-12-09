@@ -83,8 +83,8 @@ def aruco_dimensions(corners, ids, rejected, image):
 			vertical_length = ((topLeft[0] - bottomLeft[0])**2 + (topLeft[1] - bottomLeft[1])**2)**0.5
 
 			size_of_marker = (horizontal_length, vertical_length)
-			
-			print('Size of marker: ', size_of_marker)
+			print('Size of marker: ', 'Horizontal: ', horizontal_length, 'Vertical: ', vertical_length)
+			# print('Size of marker: ', size_of_marker)
 
 			# cv2.line(image, topLeft, topRight, (0, 255, 0), 2)
 			# cv2.line(image, topRight, bottomRight, (0, 255, 0), 2)

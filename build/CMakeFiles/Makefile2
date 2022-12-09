@@ -53,7 +53,9 @@ CMAKE_BINARY_DIR = /home/ammar/sitl/AGCAM/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/demo_aruco.dir/all
+all: CMakeFiles/mainGigE.dir/all
+all: CMakeFiles/fpsGigE.dir/all
+all: CMakeFiles/arucoGigE.dir/all
 
 .PHONY : all
 
@@ -63,36 +65,92 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/demo_aruco.dir/clean
+clean: CMakeFiles/mainGigE.dir/clean
+clean: CMakeFiles/fpsGigE.dir/clean
+clean: CMakeFiles/arucoGigE.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/demo_aruco.dir
+# Target rules for target CMakeFiles/mainGigE.dir
 
 # All Build rule for target.
-CMakeFiles/demo_aruco.dir/all:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/depend
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ammar/sitl/AGCAM/build/CMakeFiles --progress-num=1,2 "Built target demo_aruco"
-.PHONY : CMakeFiles/demo_aruco.dir/all
+CMakeFiles/mainGigE.dir/all:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/depend
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ammar/sitl/AGCAM/build/CMakeFiles --progress-num=5,6 "Built target mainGigE"
+.PHONY : CMakeFiles/mainGigE.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/demo_aruco.dir/rule: cmake_check_build_system
+CMakeFiles/mainGigE.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/demo_aruco.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mainGigE.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 0
-.PHONY : CMakeFiles/demo_aruco.dir/rule
+.PHONY : CMakeFiles/mainGigE.dir/rule
 
 # Convenience name for target.
-demo_aruco: CMakeFiles/demo_aruco.dir/rule
+mainGigE: CMakeFiles/mainGigE.dir/rule
 
-.PHONY : demo_aruco
+.PHONY : mainGigE
 
 # clean rule for target.
-CMakeFiles/demo_aruco.dir/clean:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/clean
-.PHONY : CMakeFiles/demo_aruco.dir/clean
+CMakeFiles/mainGigE.dir/clean:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/clean
+.PHONY : CMakeFiles/mainGigE.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/fpsGigE.dir
+
+# All Build rule for target.
+CMakeFiles/fpsGigE.dir/all:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/depend
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ammar/sitl/AGCAM/build/CMakeFiles --progress-num=3,4 "Built target fpsGigE"
+.PHONY : CMakeFiles/fpsGigE.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/fpsGigE.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/fpsGigE.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 0
+.PHONY : CMakeFiles/fpsGigE.dir/rule
+
+# Convenience name for target.
+fpsGigE: CMakeFiles/fpsGigE.dir/rule
+
+.PHONY : fpsGigE
+
+# clean rule for target.
+CMakeFiles/fpsGigE.dir/clean:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/clean
+.PHONY : CMakeFiles/fpsGigE.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/arucoGigE.dir
+
+# All Build rule for target.
+CMakeFiles/arucoGigE.dir/all:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/depend
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ammar/sitl/AGCAM/build/CMakeFiles --progress-num=1,2 "Built target arucoGigE"
+.PHONY : CMakeFiles/arucoGigE.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/arucoGigE.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/arucoGigE.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ammar/sitl/AGCAM/build/CMakeFiles 0
+.PHONY : CMakeFiles/arucoGigE.dir/rule
+
+# Convenience name for target.
+arucoGigE: CMakeFiles/arucoGigE.dir/rule
+
+.PHONY : arucoGigE
+
+# clean rule for target.
+CMakeFiles/arucoGigE.dir/clean:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/clean
+.PHONY : CMakeFiles/arucoGigE.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

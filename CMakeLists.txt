@@ -17,8 +17,15 @@ set(GIGE_CAM libMVSDK.so)
 
 
 
-add_executable(demo_aruco src/demo_aruco.cpp)
-target_link_libraries(demo_aruco ${GIGE_CAM} ${OpenCV_LIBRARIES})
+add_executable(arucoGigE src/arucoGigE.cpp)
+target_link_libraries(arucoGigE ${GIGE_CAM} ${OpenCV_LIBRARIES})
+
+add_executable(fpsGigE src/fpsGigE.cpp)
+target_link_libraries(fpsGigE ${GIGE_CAM} ${OpenCV_LIBRARIES})
+
+add_executable(mainGigE src/mainGigE.cpp)
+target_link_libraries(mainGigE ${GIGE_CAM} ${OpenCV_LIBRARIES})
+
 
 
 # add_executable(aruco_gige_cam_calibration src/aruco_gige_cam_calibration.cpp)

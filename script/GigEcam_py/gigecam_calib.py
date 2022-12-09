@@ -192,16 +192,18 @@ if __name__ == '__main__':
     print("mtx: ", mtx)
     print("dist: ", dist)
     
-    with open('GigEcameraParameters.txt', 'w') as f:
-        f.write(mtx)
-        f.write('\n')
-        f.write(dist)
+
         
     print("rvecs: ", rvecs)
     print("tvecs: ", tvecs)
 
-    # np.save("gigecam_calib.npy", [ret, mtx, dist, rvecs, tvecs])
+    np.save("gigecam_calib.npy", [ret, mtx, dist, rvecs, tvecs])
     np.save("calibration_matrix", mtx)
     np.save("distortion_coefficients", dist)
+    
+    with open('GigEcameraParameters_new.txt', 'w') as f:
+        f.write(str(mtx))
+        f.write('\n')
+        f.write(str(dist))
 
     

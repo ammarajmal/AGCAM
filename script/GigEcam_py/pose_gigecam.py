@@ -2,8 +2,8 @@
 Sample Usage:-
 python3 pose_gigecam.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
-
-
+marker_size = 0.053 # in meters
+distance_from_marker = 0.88 # in meters
 
 import cv2
 import sys
@@ -40,8 +40,15 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     if len(corners) > 0:
         for i in range(0, len(ids)):
             # Estimate pose of each marker and return the values rvec and tvec---(different from those of camera coefficients)
-            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.02, matrix_coefficients,
+            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.053, matrix_coefficients,
                                                                        distortion_coefficients)
+            cv2.putText(frame, f"X: {tvec[0][0][0]:.2f}", (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            cv2.putText(frame, f"Y: {tvec[0][0][1]:.2f}", (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            cv2.putText(frame, f"Z: {tvec[0][0][2]:.2f}", (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            
+            rvectors = rvec[0][0]
+            tvectors = tvec[0][0]
+
             # Draw a square around the markers
             cv2.aruco.drawDetectedMarkers(frame, corners) 
             # Finding the dimensions of the markers
@@ -49,6 +56,9 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             # Draw Axis
             # cv2.aruco.drawAxis(frame, matrix_coefficients, distortion_coefficients, rvec, tvec, 0.03)
             cv2.drawFrameAxes(frame, matrix_coefficients, distortion_coefficients, rvec, tvec, 0.03)
+            # cv2.putText(frame, f"X: {tvec[0][0][0]:.2f} m", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            # cv2.putText(frame, f"Y: {tvec[0][0][1]:.2f} m", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            # cv2.putText(frame, f"Z: {tvec[0][0][2]:.2f} m", (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
     return frame
 if __name__ == '__main__':
@@ -108,7 +118,7 @@ if __name__ == '__main__':
 
     # Manual exposure, exposure time 30ms
     mvsdk.CameraSetAeState(hCamera, 0)
-    mvsdk.CameraSetExposureTime(hCamera, 4 * 1000)
+    mvsdk.CameraSetExposureTime(hCamera, 10 * 1000)
 
     # Let the SDK internal image fetching thread start to work
     mvsdk.CameraPlay(hCamera)

@@ -1,3 +1,5 @@
 /home/ammar/sitl/AGCAM/build/CMakeFiles/rebuild_cache.dir
 /home/ammar/sitl/AGCAM/build/CMakeFiles/edit_cache.dir
-/home/ammar/sitl/AGCAM/build/CMakeFiles/demo_aruco.dir
+/home/ammar/sitl/AGCAM/build/CMakeFiles/mainGigE.dir
+/home/ammar/sitl/AGCAM/build/CMakeFiles/fpsGigE.dir
+/home/ammar/sitl/AGCAM/build/CMakeFiles/arucoGigE.dir

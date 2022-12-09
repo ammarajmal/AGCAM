@@ -111,44 +111,124 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named demo_aruco
+# Target rules for targets named mainGigE
 
 # Build rule for target.
-demo_aruco: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo_aruco
-.PHONY : demo_aruco
+mainGigE: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mainGigE
+.PHONY : mainGigE
 
 # fast build rule for target.
-demo_aruco/fast:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/build
-.PHONY : demo_aruco/fast
+mainGigE/fast:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/build
+.PHONY : mainGigE/fast
 
-src/demo_aruco.o: src/demo_aruco.cpp.o
+#=============================================================================
+# Target rules for targets named fpsGigE
 
-.PHONY : src/demo_aruco.o
+# Build rule for target.
+fpsGigE: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fpsGigE
+.PHONY : fpsGigE
+
+# fast build rule for target.
+fpsGigE/fast:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/build
+.PHONY : fpsGigE/fast
+
+#=============================================================================
+# Target rules for targets named arucoGigE
+
+# Build rule for target.
+arucoGigE: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 arucoGigE
+.PHONY : arucoGigE
+
+# fast build rule for target.
+arucoGigE/fast:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/build
+.PHONY : arucoGigE/fast
+
+src/arucoGigE.o: src/arucoGigE.cpp.o
+
+.PHONY : src/arucoGigE.o
 
 # target to build an object file
-src/demo_aruco.cpp.o:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/src/demo_aruco.cpp.o
-.PHONY : src/demo_aruco.cpp.o
+src/arucoGigE.cpp.o:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/src/arucoGigE.cpp.o
+.PHONY : src/arucoGigE.cpp.o
 
-src/demo_aruco.i: src/demo_aruco.cpp.i
+src/arucoGigE.i: src/arucoGigE.cpp.i
 
-.PHONY : src/demo_aruco.i
+.PHONY : src/arucoGigE.i
 
 # target to preprocess a source file
-src/demo_aruco.cpp.i:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/src/demo_aruco.cpp.i
-.PHONY : src/demo_aruco.cpp.i
+src/arucoGigE.cpp.i:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/src/arucoGigE.cpp.i
+.PHONY : src/arucoGigE.cpp.i
 
-src/demo_aruco.s: src/demo_aruco.cpp.s
+src/arucoGigE.s: src/arucoGigE.cpp.s
 
-.PHONY : src/demo_aruco.s
+.PHONY : src/arucoGigE.s
 
 # target to generate assembly for a file
-src/demo_aruco.cpp.s:
-	$(MAKE) -f CMakeFiles/demo_aruco.dir/build.make CMakeFiles/demo_aruco.dir/src/demo_aruco.cpp.s
-.PHONY : src/demo_aruco.cpp.s
+src/arucoGigE.cpp.s:
+	$(MAKE) -f CMakeFiles/arucoGigE.dir/build.make CMakeFiles/arucoGigE.dir/src/arucoGigE.cpp.s
+.PHONY : src/arucoGigE.cpp.s
+
+src/fpsGigE.o: src/fpsGigE.cpp.o
+
+.PHONY : src/fpsGigE.o
+
+# target to build an object file
+src/fpsGigE.cpp.o:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/src/fpsGigE.cpp.o
+.PHONY : src/fpsGigE.cpp.o
+
+src/fpsGigE.i: src/fpsGigE.cpp.i
+
+.PHONY : src/fpsGigE.i
+
+# target to preprocess a source file
+src/fpsGigE.cpp.i:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/src/fpsGigE.cpp.i
+.PHONY : src/fpsGigE.cpp.i
+
+src/fpsGigE.s: src/fpsGigE.cpp.s
+
+.PHONY : src/fpsGigE.s
+
+# target to generate assembly for a file
+src/fpsGigE.cpp.s:
+	$(MAKE) -f CMakeFiles/fpsGigE.dir/build.make CMakeFiles/fpsGigE.dir/src/fpsGigE.cpp.s
+.PHONY : src/fpsGigE.cpp.s
+
+src/mainGigE.o: src/mainGigE.cpp.o
+
+.PHONY : src/mainGigE.o
+
+# target to build an object file
+src/mainGigE.cpp.o:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/src/mainGigE.cpp.o
+.PHONY : src/mainGigE.cpp.o
+
+src/mainGigE.i: src/mainGigE.cpp.i
+
+.PHONY : src/mainGigE.i
+
+# target to preprocess a source file
+src/mainGigE.cpp.i:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/src/mainGigE.cpp.i
+.PHONY : src/mainGigE.cpp.i
+
+src/mainGigE.s: src/mainGigE.cpp.s
+
+.PHONY : src/mainGigE.s
+
+# target to generate assembly for a file
+src/mainGigE.cpp.s:
+	$(MAKE) -f CMakeFiles/mainGigE.dir/build.make CMakeFiles/mainGigE.dir/src/mainGigE.cpp.s
+.PHONY : src/mainGigE.cpp.s
 
 # Help Target
 help:
@@ -158,10 +238,18 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... demo_aruco"
-	@echo "... src/demo_aruco.o"
-	@echo "... src/demo_aruco.i"
-	@echo "... src/demo_aruco.s"
+	@echo "... mainGigE"
+	@echo "... fpsGigE"
+	@echo "... arucoGigE"
+	@echo "... src/arucoGigE.o"
+	@echo "... src/arucoGigE.i"
+	@echo "... src/arucoGigE.s"
+	@echo "... src/fpsGigE.o"
+	@echo "... src/fpsGigE.i"
+	@echo "... src/fpsGigE.s"
+	@echo "... src/mainGigE.o"
+	@echo "... src/mainGigE.i"
+	@echo "... src/mainGigE.s"
 .PHONY : help
 
 

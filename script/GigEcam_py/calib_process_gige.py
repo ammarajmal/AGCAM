@@ -52,7 +52,7 @@ def cam_calibration():
 
     # Manual exposure, exposure time 30ms
     mvsdk.CameraSetAeState(hCamera, 0)
-    mvsdk.CameraSetExposureTime(hCamera, 30 * 1000)
+    mvsdk.CameraSetExposureTime(hCamera, 10 * 1000)
 
     # Let the SDK internal image fetching thread start to work
     mvsdk.CameraPlay(hCamera)
