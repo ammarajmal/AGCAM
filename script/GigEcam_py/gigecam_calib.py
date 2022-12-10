@@ -194,8 +194,8 @@ if __name__ == '__main__':
     
 
         
-    print("rvecs: ", rvecs)
-    print("tvecs: ", tvecs)
+    # print("rvecs: ", rvecs)
+    # print("tvecs: ", tvecs)
 
     np.save("gigecam_calib.npy", [ret, mtx, dist, rvecs, tvecs])
     np.save("calibration_matrix", mtx)
