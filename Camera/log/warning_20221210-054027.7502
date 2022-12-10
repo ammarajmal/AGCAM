@@ -1,0 +1,16 @@
+Log file created at: 2022/12/10 05:40:27
+Running on machine: ammarAMD
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W1210 05:40:27.931229  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:enp33s0f3-192.168.1.20-Unknown-1500)Heart Fail:1
+W1210 05:40:30.259155  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:enp33s0f3-192.168.1.20-Unknown-1500)Heart Fail:2
+W1210 05:40:31.744817  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:3
+W1210 05:40:31.755689  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:4
+W1210 05:40:32.756613  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:5
+W1210 05:40:33.763720  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:6
+W1210 05:40:34.768170  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:7
+W1210 05:40:35.776677  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:8
+W1210 05:40:36.785794  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:9
+W1210 05:40:37.794854  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:10
+W1210 05:40:38.801312  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:11
+W1210 05:40:39.809219  7540 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)Heart Fail:12
+W1210 05:40:39.810364  7540 CameraGigeBase.cpp:3919] Device:(name:MS-GE40GC-T-CL sn:052120120268 cam:192.168.1.184-1000-1400 nic:-192.168.1.20-Unknown-0)CommIsFailed!!!
