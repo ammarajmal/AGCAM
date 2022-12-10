@@ -1,6 +1,6 @@
 '''
 Sample Usage:-
-python3 pose_gigecam2.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+python3 pose_gigecam1.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
 marker_size = 0.053 # in meters
 distance_from_marker = 0.88 # in meters
@@ -152,7 +152,7 @@ if __name__ == '__main__':
             cTime = time.time()
             fps = 1/(cTime-pTime)
             pTime = cTime
-            print('FPS: ', fps)
+            print(fps)
             
             cv2.putText(output, f'FPS: {int(fps)}', (20, 50), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2)
             cv2.imshow("Estimated Pose", output)
