@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package>
+  <name>picam_driver</name>
+  <version>1.1.6</version>
+
+  <description>
+    The picam_driver package contains a node to publish a video stream (the protocols that
+    opencv supports are supported, including rtsp, webcams on /dev/video and video files) in ROS image topics, it supports camera info and basic image flipping (horizontal, vertical or both) capabilities, also adjusting publishing rate.
+  </description>
+
+  <maintainer email="Sammy.Pfeiffer@student.uts.edu.au">Sammy Pfeiffer</maintainer>
+  <author>Sammy Pfeiffer</author>
+
+  <url type="website">http://www.ros.org/wiki/picam_driver</url>
+  <url type="development">https://github.com/ros-drivers/picam_driver</url>
+  <url type="bugtracker">https://github.com/ros-drivers/picam_driver/issues</url>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>camera_info_manager</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>camera_info_manager</run_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+  <export>
+  </export>
+</package>
