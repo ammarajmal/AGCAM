@@ -5,15 +5,41 @@ python3 pose_gigecam3.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_
 marker_size = 0.053 # in meters
 distance_from_marker = 0.88 # in meters
 
-import cv2
 import sys
-from utils import ARUCO_DICT, aruco_dimensions
-import argparse
+import math
 import time
-import mvsdk
-import glob
-import os
+import argparse
 import numpy as np
+import cv2.aruco as aruco
+import cv2
+from utils import ARUCO_DICT, aruco_dimensions
+
+
+# Checks if a matrix is a valid rotation matrix.
+def isRotationMatrix(R) :
+    Rt = np.transpose(R)
+    shouldBeIdentity = np.dot(Rt, R)
+    I = np.identity(3, dtype = R.dtype)
+    n = np.linalg.norm(I - shouldBeIdentity)
+    return n < 1e-6
+
+# Calculates rotation matrix to euler angles
+# The result is the same as MATLAB except the order
+# of the euler angles ( x and z are swapped ).
+def rotationMatrixToEulerAngles(R):
+    assert(isRotationMatrix(R))
+    sy = math.sqrt(R[0,0] * R[0,0] +  R[1,0] * R[1,0])
+    singular = sy < 1e-6
+    if  not singular:
+        x = math.atan2(R[2,1] , R[2,2])
+        y = math.atan2(-R[2,0], sy)
+        z = math.atan2(R[1,0], R[0,0])
+    else :
+        x = math.atan2(-R[1,2], R[1,1])
+        y = math.atan2(-R[2,0], sy)
+        z = 0
+    return np.array([x, y, z])
+
 
 def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coefficients):
 
@@ -39,27 +65,29 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
         # If markers are detected
     if len(corners) > 0:
         for i in range(0, len(ids)):
-            # Estimate pose of each marker and return the values rvec and tvec---(different from those of camera coefficients)
-            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.053, matrix_coefficients,
-                                                                       distortion_coefficients)
-            cv2.putText(frame, f"X: {tvec[0][0][0]:.2f}", (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-            cv2.putText(frame, f"Y: {tvec[0][0][1]:.2f}", (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-            cv2.putText(frame, f"Z: {tvec[0][0][2]:.2f}", (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            # Estimate pose of marker and show the pose of the marker along with the distance from the camera
+            rvec_list, tvec_list, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.053, matrix_coefficients, distortion_coefficients)
+            cv2.putText(frame, f"Distance: {tvec[0][0][2]:.2f}", (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            rvec = rvec_list[0][0]
+            tvec = tvec_list[0][0]
+            # print("rvec_list: ", rvec)
+            # print("tvec_list: ", tvec)
             
-            rvectors = rvec[0][0]
-            tvectors = tvec[0][0]
-
-            # Draw a square around the markers
-            cv2.aruco.drawDetectedMarkers(frame, corners) 
-            # Finding the dimensions of the markers
-            aruco_dimensions(corners, ids, rejected_img_points, frame)
-            # Draw Axis
-            # cv2.aruco.drawAxis(frame, matrix_coefficients, distortion_coefficients, rvec, tvec, 0.03)
-            cv2.drawFrameAxes(frame, matrix_coefficients, distortion_coefficients, rvec, tvec, 0.03)
-            # cv2.putText(frame, f"X: {tvec[0][0][0]:.2f} m", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-            # cv2.putText(frame, f"Y: {tvec[0][0][1]:.2f} m", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-            # cv2.putText(frame, f"Z: {tvec[0][0][2]:.2f} m", (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-
+            aruco.drawAxis(frame, matrix_coefficients, distortion_coefficients, rvec, tvec, 0.05)
+            
+            rvec_flipped = rvec * -1
+            tvec_flipped = tvec * -1
+            
+            rotation_matrix, jacobian = cv2.Rodrigues(rvec_flipped)
+            realworld_tvec = np.dot(rotation_matrix, tvec_flipped)
+            
+            pitch, roll, yaw = rotationMatrixToEulerAngles(rotation_matrix)
+            
+            tvec_str = f"X: {realworld_tvec[0]:.2f}, Y: {realworld_tvec[1]:.2f}, Z: {realworld_tvec[2]:.2f}"
+            rvec_str = f"roll: {math.degrees(roll):.2f}, pitch: {math.degrees(pitch):.2f}, yaw: {math.degrees(yaw):.2f}"
+            cv2.putText(frame, tvec_str, (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            cv2.putText(frame, rvec_str, (20, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            
     return frame
 if __name__ == '__main__':
 
