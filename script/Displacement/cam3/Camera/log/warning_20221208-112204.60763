@@ -1,0 +1,4 @@
+Log file created at: 2022/12/08 11:22:04
+Running on machine: omenHP
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W1208 11:22:04.606390 60803 CameraGigeBase.cpp:3914] Device:(name:MS-GE40GC-T-CL sn:052120120269 cam:192.168.1.57-1000-8000 nic:eno1-192.168.1.19-Unknown-1500)Heart Fail:1
