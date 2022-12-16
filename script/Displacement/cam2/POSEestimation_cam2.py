@@ -89,26 +89,7 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             
             return True, frame, realworld_tvec, pitch, roll, yaw
     return False, frame, None, None, None, None
-# def write_to_excel(tvec_str, rvec_str):
-#                 # function to write tvec and rvec to excel file
-                
-#                 # Create a Pandas dataframe from the data.
-#                 # write tvec_str to excel file
-#                 # write rvec_str to excel file
-#                 df_tvec = pd.DataFrame({'X': [realworld_tvec[0]], 'Y': [realworld_tvec[1]], 'Z': [realworld_tvec[2]], 'roll': [math.degrees(roll)], 'pitch': [math.degrees(pitch)], 'yaw': [math.degrees(yaw)]})
-#                 df_rvec = pd.DataFrame({'roll': [math.degrees(roll)], 'pitch': [math.degrees(pitch)], 'yaw': [math.degrees(yaw)]})
-                
-                                
-#                 # Create a Pandas Excel writer using XlsxWriter as the engine.
-#                 writer = pd.ExcelWriter('Pose_Cam3.xlsx', engine='xlsxwriter')
-                
-#                 # Convert the dataframe to an XlsxWriter Excel object.
-#                 df_tvec.to_excel(writer, sheet_name='Sheet1', index=False)
-#                 df_rvec.to_excel(writer, sheet_name='Sheet2', index=False)
-                
-#                 # Close the Pandas Excel writer and output the Excel file.
-#                 writer.save()
-            
+           
 if __name__ == '__main__':
 
     ap = argparse.ArgumentParser()
