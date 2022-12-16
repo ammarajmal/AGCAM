@@ -19,7 +19,7 @@ import mvsdk
 import xlrd
 from utils import ARUCO_DICT, aruco_dimensions
 
-setExposure = 5
+setExposure = 4
 fcLimit = 100
 
 
