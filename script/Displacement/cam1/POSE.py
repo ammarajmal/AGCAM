@@ -1,6 +1,6 @@
 '''
 Sample Usage:-
-python3 POSEestimation_cam1.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+python3 POSE.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
 marker_size = 0.053 # in meters
 distance_from_marker = 0.88 # in meters
@@ -17,7 +17,7 @@ import mvsdk
 
 from utils import ARUCO_DICT
 
-setExposure = 20
+setExposure = 5
 FClimit = 10000
 FPSfilename = 'FPS_CAM_1.csv'
 field_names = ['ind', 'fpsCam1']

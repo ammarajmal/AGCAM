@@ -1,6 +1,6 @@
 '''
 Sample Usage:-
-python3 POSEestimation_cam1.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+python3 POSE.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
 marker_size = 0.053 # in meters
 distance_from_marker = 0.88 # in meters
@@ -17,7 +17,7 @@ import mvsdk
 
 from utils import ARUCO_DICT
 
-setExposure = 20
+setExposure = 5
 FClimit = 10000
 FPSfilename = 'FPS_CAM_1.csv'
 field_names = ['ind', 'fpsCam1']
@@ -119,8 +119,8 @@ if __name__ == '__main__':
     k = np.load(calibration_matrix_path)
     d = np.load(distortion_coefficients_path)
 
-    video = cv2.VideoCapture(0)
-    time.sleep(2.0)
+    # video = cv2.VideoCapture(0)
+    # time.sleep(2.0)
     DevList = mvsdk.CameraEnumerateDevice()
     nDev = len(DevList)
     cal_image_count = 0
@@ -154,9 +154,9 @@ if __name__ == '__main__':
     # Camera mode switched to continuous acquisition
     mvsdk.CameraSetTriggerMode(hCamera, 0)
 
-    # Manual exposure, exposure time 30ms
-    mvsdk.CameraSetAeState(hCamera, 0)
-    mvsdk.CameraSetExposureTime(hCamera, setExposure * 1000)
+    # Manual exposure time, the default is automatic exposure
+    # mvsdk.CameraSetAeState(hCamera, 0)
+    # mvsdk.CameraSetExposureTime(hCamera, setExposure * 1000)
 
     # Let the SDK internal image fetching thread start to work
     mvsdk.CameraPlay(hCamera)
@@ -176,8 +176,8 @@ if __name__ == '__main__':
     FC  = 0
 
     frVector = []
-    while FC < FClimit:
-
+    # while FC < FClimit:
+    while True:
         try:
             pRawData, FrameHead = mvsdk.CameraGetImageBuffer(hCamera, 200)
             mvsdk.CameraImageProcess(hCamera, pRawData, pFrameBuffer, FrameHead)
@@ -186,24 +186,28 @@ if __name__ == '__main__':
             frame_data = (mvsdk.c_ubyte * FrameHead.uBytes).from_address(pFrameBuffer)
             frame = np.frombuffer(frame_data, dtype=np.uint8)
             frame = frame.reshape((FrameHead.iHeight, FrameHead.iWidth, 1 if monoCamera else 3))
+
             frame = cv2.resize(frame, (1280,720), interpolation = cv2.INTER_LINEAR)
+            # frame = cv2.resize(frame, (640,480), interpolation = cv2.INTER_LINEAR)
+
             realworld_tvec, roll, pitch, yaw = 0, 0, 0, 0
             flag, output, realworld_tvec, roll, pitch, yaw = pose_esitmation(frame, aruco_dict_type, k, d)
-            if flag:
-                    tvec_str = f"X: {realworld_tvec[0]:.2f}, Y: {realworld_tvec[1]:.2f}, Z: {realworld_tvec[2]:.2f}"
-                    rvec_str = f"roll: {math.degrees(roll):.2f}, pitch: {math.degrees(pitch):.2f}, yaw: {math.degrees(yaw):.2f}"
-                    # write_to_excel(tvec_str, rvec_str)
-                    tvec_text = f"{realworld_tvec[0]:.2f},{realworld_tvec[1]:.2f},{realworld_tvec[2]:.2f}"
-                    with open('PoseCam1.txt', 'a+') as f:
-                        f.write(tvec_text)
-                        f.write('\n')
-
-                    cv2.putText(frame, tvec_str, (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-                    cv2.putText(frame, rvec_str, (20, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
             cTime = time.time()
             fps = int(1/(cTime-pTime))
             pTime = cTime
             cv2.putText(output, f'FPS: {fps}', (20, 50), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+            # if flag:
+            #         tvec_str = f"X: {realworld_tvec[0]:.2f}, Y: {realworld_tvec[1]:.2f}, Z: {realworld_tvec[2]:.2f}"
+            #         rvec_str = f"roll: {math.degrees(roll):.2f}, pitch: {math.degrees(pitch):.2f}, yaw: {math.degrees(yaw):.2f}"
+            #         # write_to_excel(tvec_str, rvec_str)
+            #         tvec_text = f"{realworld_tvec[0]:.2f},{realworld_tvec[1]:.2f},{realworld_tvec[2]:.2f}"
+            #         with open('PoseCam1.txt', 'a+') as f:
+            #             f.write(tvec_text)
+            #             f.write('\n')
+
+                    # cv2.putText(frame, tvec_str, (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+                    # cv2.putText(frame, rvec_str, (20, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+
             
             with open(FPSfilename, 'a', encoding='utf-8') as csv_file:
                 csv_writer = csv.DictWriter(csv_file, fieldnames=field_names)
@@ -217,8 +221,8 @@ if __name__ == '__main__':
             cv2.imshow("Cam1 Pose", output)
             key = cv2.waitKey(1) & 0xFF
             FC += 1
-            if FC == FClimit-1:
-                break
+            # if FC == FClimit-1:
+            #     break
             if key == ord("q"):
                 break
         except mvsdk.CameraException as e:

@@ -9,7 +9,7 @@ import time
 import cv2
 
 field_names = ['ind', 'fpsCam1']
-with open('fps_webcam.csv', 'w') as csv_file:
+with open('fps_webcam.csv', 'w', encoding='utf-8') as csv_file:
     csv_writer = csv.DictWriter(csv_file, fieldnames=field_names)
     csv_writer.writeheader()
 cap = cv2.VideoCapture(0)
@@ -21,7 +21,7 @@ while(cap.isOpened()):
     fps = int(1/(cTime-pTime))
     cv2.putText(frame, str(fps), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
     cv2.imshow('frame', frame)
-    with open('fps_webcam.csv', 'a') as csv_file:
+    with open('fps_webcam.csv', 'a', encoding='utf-8') as csv_file:
         csv_writer = csv.DictWriter(csv_file, fieldnames=field_names)
         info = {
             'ind': ind,
